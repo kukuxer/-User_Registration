@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page </title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+
+        h1 {
+            color: #f00;
+            font-size: 72px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-top: 50px;
+        }
+
+        hr {
+            border: 4px solid #f00;
+            width: 70%;
+        }
+
+        p {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 50px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 50px;
+            border: 10px solid #f00;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+<h1>Home page</h1>
+<hr>
+<p>Welcome to kukuxer home page !</p>
+<div class="quote">
+    "Aboba aboba, aboooba!"
+    <hr>
+    <p sec:authorize="hasAnyRole('MANAGER','ADMIN')">
+        <a th:href="@{/leaders}"> Leadership(only for managers)</a>
+    </p>
+    <p sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{/systems}"> system(only for admin)</a>
+    </p>
+    <hr sec:authorize="hasAnyRole('MANAGER','ADMIN')">
+<!--    display user name and role -->
+    <p>
+        User: <span sec:authentication="principal.username" ></span>
+        <br><br>
+        Role(s): <span sec:authentication="principal.authorities"></span>
+    </p>
+</div>
+<!--add logout button -->
+<form action="#" th:action="@{/logout}" method="POST">
+<input type="submit" value="Logout">
+</form>
+</body>
+</html>
