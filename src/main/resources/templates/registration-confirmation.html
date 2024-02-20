@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registered Successfully</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #3498db, #2980b9);
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #FFF;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #FFA500;
+        }
+    </style>
+</head>
+<body>
+<h2>User registered successfully!</h2>
+<!-- Display first name, last name, and email -->
+<ul>
+    <li th:text="'User name: ' + ${webUser.userName}"></li>
+    <li th:text="'First name: ' + ${webUser.firstName}"></li>
+    <li th:text="'Last name: ' + ${webUser.lastName}"></li>
+    <li th:text="'Email: ' + ${webUser.email}"></li>
+</ul>
+<hr>
+
+<a th:href="@{/showMyLoginPage}">Login with new user name</a>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #3498db, #2980b9); /* Blue gradient background */
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #FFF;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #FFD700; /* Gold color for the title */
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            width: 100%;
+            padding: 30px;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: inline-block;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        div.error-message {
+            color: #FF0000;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            margin: 10px 0;
+            padding: 15px;
+            border: 2px solid #3498db; /* Blue border */
+            border-radius: 8px;
+            background-color: #1E90FF; /* Blue background for input fields */
+            color: #FFF;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db; /* Blue background for submit button */
+            color: #FFF;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9; /* Darker blue on hover for submit button */
+        }
+
+        .register-button {
+            margin-top: 20px;
+        }
+
+        a.btn-register {
+            display: inline-block;
+            padding: 15px;
+            background-color: #2ecc71; /* Green background color */
+            color: #FFF; /* White text color */
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease;
+        }
+
+        a.btn-register:hover {
+            background-color: #27ae60; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome!</h1>
+<form action="#" th:action="@{/authenticateTheUser}" method="POST">
+    <!-- Check for any login error -->
+    <div th:if="${param.error}" class="error-message">
+        <i>Incorrect username or password. Please try again.</i>
+    </div>
+    <!-- Check for logout -->
+    <div th:if="${param.logout}" class="error-message">
+        <i>You have been successfully logged out.</i>
+    </div>
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="Login">
+</form>
+<div class="register-button">
+    <a th:href="@{/register/showRegistrationForm}" class="btn-register" role="button" aria-pressed="true">
+        Register New User
+    </a>
+</div>
+</body>
+</html>
