@@ -38,7 +38,7 @@ public class DemoSecurityConfig {
     //authenticationProvider bean definition
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity, AuthenticationSuccessHandler customAuthenticationSuccessHandler) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity, AuthenticationSuccessHandler customAuthenticationSuccessHandler,DaoAuthenticationProvider authenticationProvider) throws Exception {
         httpSecurity.authorizeHttpRequests(configurer ->
                         configurer
                                 .requestMatchers("/").hasRole("EMPLOYEE")
@@ -56,7 +56,7 @@ public class DemoSecurityConfig {
                 ).logout(logout -> logout.permitAll()
                 ).exceptionHandling(configurer ->
                         configurer.accessDeniedPage("/acces-denied")
-                )
+                ).authenticationProvider(authenticationProvider);
         ;
         return httpSecurity.build();
     }
